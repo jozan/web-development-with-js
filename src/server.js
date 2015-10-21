@@ -18,12 +18,23 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('/api/tussi', function(req, res, next) {
 
-    res.send([
-        'Tussi',
-        'Tussittaja',
-        'Tussitus',
-        'Tussittaa',
-    ]);
+  res.send([
+    'Tussi',
+    'Tussittaja',
+    'Tussitus',
+    'Tussittaa',
+  ]);
+
+});
+
+app.get('/api/boards', function(req, res, next) {
+
+  res.send([
+    { name: 'Tussi', items: ['Lipase tussia', 'Losoile']},
+    { name: 'Lusso', items: ['Lipase losoa', 'Tusseile']},
+    { name: 'Lupsuttele', items: ['Lupso', 'Lopso']},
+    { name: 'Lupsuttele', items: ['Lupso', 'Lopso']}
+  ]);
 
 });
 

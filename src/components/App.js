@@ -1,48 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { List } from 'immutable';
 import api from '../api';
 
 import MainContent from './MainContent';
 
-export default React.createClass({
-  getInitialState: function() {
-    return {
-      count: 0,
-      showCounter: false,
-      names: []
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      boards: List()
     }
-  },
+  }
 
-  componentDidMount: function() {
-    api.getTussit().then(data => this.setState({ names: data }));
-  },
+  componentDidMount() {
+    api.getBoards().then(data => this.setState({ boards: data }));
+  }
 
-  render: function() {
-    const { names, showCounter, count } = this.state;
+  render() {
+    const { boards } = this.state;
     return (
       <div>
-        <h1>Lusso</h1>
+        <h1>Trollo</h1>
 
-        {this.props.children ||
-          <MainContent
-            {...this.state}
-            incrementCounter={this.incrementCounter}
-            toggleCounter={this.toggleCounter}
-          />
-        }
+        {this.props.children && React.cloneElement(
+          this.props.children,
+          {
+            boards
+          }
+        )}
 
       </div>
     );
-  },
-
-  incrementCounter: function() {
-    this.setState({
-      count: this.state.count + 1
-    });
-  },
-
-  toggleCounter: function() {
-    this.setState({
-      showCounter: !this.state.showCounter
-    });
   }
-});
+}
