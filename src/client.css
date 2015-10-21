@@ -1,9 +1,39 @@
 $red: rgba(255, 0, 0, 1);
 
 h1 {
-    color: $red
+    color: darkorange;
 }
 
 body {
-    background: orange;
+    background: #fff;
+    font-family: sans-serif;
+    color: "#444"
+}
+
+.counter {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bolder;
+    color: #bada55;
+    margin-top: 3em;
+
+    &-number {
+        margin-bottom: 1rem;
+    }
+
+    button {
+        font-size: 2rem;
+        color: hotpink;
+        border: 1px solid hotpink;
+        background: transparent;
+        border-radius: 10px;
+        padding: 8px 16px;
+
+        &:hover {
+            color: #fff;
+            background: hotpink;
+        }
+
+        &:focus { outline: 0 }
+    }
 }
