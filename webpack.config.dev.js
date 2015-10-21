@@ -3,7 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
 module.exports = {
-    devtool: 'eval',
+    devtool: 'cheap-eval-source-map',
     entry: [
         'webpack-hot-middleware/client',
         './src/client.js'
