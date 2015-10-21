@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import { VelocityComponent, VelocityTransitionGroup } from 'velocity-react';
-import { Router, Route, Link } from 'react-router'
+import { Router, Route, Link, IndexRoute } from 'react-router'
 import axios from 'axios';
 
 function getTussit() {
@@ -61,12 +61,10 @@ const App = React.createClass({
 
         {this.props.children ?
           this.props.children :
-          <Content
-            names={names}
-            count={count}
+          <MainContent
+            {...this.state}
             incrementCounter={this.incrementCounter}
             toggleCounter={this.toggleCounter}
-            showCounter={showCounter}
           />
         }
 
@@ -87,7 +85,7 @@ const App = React.createClass({
   }
 });
 
-const Content = React.createClass({
+const MainContent = React.createClass({
   render: function() {
     const {
       names,
