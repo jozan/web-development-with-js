@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import { VelocityComponent, VelocityTransitionGroup } from 'velocity-react';
+import { Router, Route, Link } from 'react-router'
 import axios from 'axios';
 
 function getTussit() {
@@ -15,7 +16,9 @@ const HelloWorld = React.createClass({
   render: function() {
     return (
       <div>
-        Hello {this.props.name}
+        <Link to={`/hello/${this.props.name}`}>
+          Hello {this.props.name}
+        </Link>
       </div>
     );
   }
@@ -49,24 +52,23 @@ const App = React.createClass({
   },
 
   render: function() {
-    const names = this.state.names;
+    const { names, showCounter, count } = this.state;
+    console.log(names);
 
     return (
       <div>
         <h1>Lusso</h1>
 
-        {names.map((name, index) =>
-          <HelloWorld key={index} name={name} />
-        )}
-
-        <button onClick={this.toggleCounter}>Toggle</button>
-
-        <VelocityTransitionGroup enter={{animation: "fadeIn"}} leave={{animation: "fadeOut"}}>
-          {this.state.showCounter ? <Counterizer
-            count={this.state.count}
-            onIncrementCounter={this.incrementCounter}
-          /> : undefined}
-        </VelocityTransitionGroup>
+        {this.props.children ?
+          this.props.children :
+          <Content
+            names={names}
+            count={count}
+            incrementCounter={this.incrementCounter}
+            toggleCounter={this.toggleCounter}
+            showCounter={showCounter}
+          />
+        }
 
       </div>
     );
@@ -85,7 +87,56 @@ const App = React.createClass({
   }
 });
 
+const Content = React.createClass({
+  render: function() {
+    const {
+      names,
+      showCounter,
+      count,
+      incrementCounter,
+      toggleCounter
+    } = this.props;
+
+    return (
+      <div>
+        {names.map((name, index) =>
+          <HelloWorld key={index} name={name} />
+        )}
+
+        <button onClick={toggleCounter}>Toggle</button>
+
+        <VelocityTransitionGroup enter={{animation: "fadeIn"}} leave={{animation: "fadeOut"}}>
+          {showCounter ? <Counterizer
+            count={count}
+            onIncrementCounter={incrementCounter}
+          /> : undefined}
+        </VelocityTransitionGroup>
+      </div>
+    );
+  }
+});
+
+const Greeter = React.createClass({
+  render: function() {
+    const { name } = this.props.params;
+
+    return (
+      <h2>
+        Hello {name}
+      </h2>
+    );
+  }
+});
+
+const routes = (
+  <Router>
+    <Route path="/" component={App}>
+      <Route path="/hello/:name" component={Greeter} />
+    </Route>
+  </Router>
+);
+
 ReactDOM.render(
-  <App />,
+  routes,
   document.getElementById('app')
 );

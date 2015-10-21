@@ -19,10 +19,10 @@ app.use(require('webpack-hot-middleware')(compiler));
 app.get('/api/tussi', function(req, res, next) {
 
     res.send([
-        'tussi',
-        'tussi2',
-        'tussi3',
-        'tussi4',
+        'Tussi',
+        'Tussittaja',
+        'Tussitus',
+        'Tussittaa',
     ]);
 
 });
