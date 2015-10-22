@@ -9,14 +9,12 @@ import { createHistory } from 'history';
 let history = createHistory();
 
 import App from './components/App';
-import Index from './components/Index';
-import Greeter from './components/Greeter';
+import Board from './components/Board';
 
 const routes = (
   <Router history={history}>
     <Route path="/" component={App}>
-      <IndexRoute component={Index} />
-      <Route path="/hello/:name" component={Greeter} />
+      <IndexRoute component={Board} />
     </Route>
   </Router>
 );

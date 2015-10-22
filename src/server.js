@@ -30,10 +30,10 @@ app.get('/api/tussi', function(req, res, next) {
 app.get('/api/boards', function(req, res, next) {
 
   res.send([
-    { name: 'Tussi', items: ['Lipase tussia', 'Losoile']},
-    { name: 'Lusso', items: ['Lipase losoa', 'Tusseile']},
-    { name: 'Lupsuttele', items: ['Lupso', 'Lopso']},
-    { name: 'Lupsuttele', items: ['Lupso', 'Lopso']}
+    { id: 1, order: 2, name: 'Tussi', items: ['Lipase tussia', 'Losoile']},
+    { id: 2, order: 3, name: 'Lusso', items: ['Lipase losoa', 'Tusseile', 'Tusseile', 'Tusseile', 'Tusseile', 'Tusseile', 'Tusseile']},
+    { id: 3, order: 1, name: 'Lupsuttele', items: ['Lupso', 'Lopso']},
+    { id: 4, order: 4, name: 'Lipaise', items: ['Lupso', 'Lopso']}
   ]);
 
 });

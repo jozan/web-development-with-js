@@ -12,20 +12,46 @@ body {
   color: "#444";
 }
 
+header {
+  padding: 0 24px;
+  margin-bottom: 24px;
+}
+
 .board-container {
   display: inline-flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 
-  padding: 24px;
+  padding: 24px 0;
   background: orange;
 }
 
 .board {
   padding: 16px;
   min-width: 250px;
-  margin: 0 24px;
   background: #fff;
   border-radius: 4px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, .11);
+  margin: 0 12px;
+
+  &:first-child {
+    margin: 0 12px 0 24px;
+  }
+
+  &:last-child {
+    margin: 0 24px 0 12px;
+  }
+
+  &-droparea {
+    content: '';
+    display: block;
+    height: 100px;
+    width: 24px;
+    background: orangered;
+
+    &-container {
+      display: flex;
+      flex-direction: row;
+    }
+  }
 }
